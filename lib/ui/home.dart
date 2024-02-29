@@ -60,96 +60,9 @@ class _HomePageState extends State<HomePage> {
               },
               child: const Text("로그아웃"),
             ),
-
-            ///ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-            /// 생성
-            ElevatedButton(
-              onPressed: () {
-                write("firestore");
-              },
-              child: const Text("create Test"),
-            ),
-
-            /// 수정
-            ElevatedButton(
-              onPressed: () {
-                update();
-              },
-              child: const Text("set Test"),
-            ),
-
-            /// 삭제
-            ElevatedButton(
-              onPressed: () {
-                delete();
-              },
-              child: const Text("delete Test"),
-            ),
-
-            /// 읽기
-            ElevatedButton(
-              onPressed: () {
-                read();
-              },
-              child: const Text("read Test"),
-            ),
-            Text("email 값 : ${widget.email}")
           ],
         ),
       ),
     );
-  }
-
-  /// 생성 메서드
-  void write(String collectionName) async {
-    try {
-      await firestore.collection(collectionName).add({
-        "email": widget.userID,
-      });
-    } catch (e) {
-      print("생성 오류 발생 : $e");
-    }
-  }
-
-  /// 수정 메서드
-  void update() async {
-    try {
-      await firestore
-          .collection("firestore")
-          .doc("PPIJPEsw8x7Tysi2r2fe")
-          .set({"email": "변경된 이메일입니다."});
-    } catch (e) {
-      print("set 오류 발생 : $e");
-    }
-  }
-
-  /// 삭제 메서드
-  void delete() async {
-    try {
-      await firestore
-          .collection("firestore")
-          .doc("PPIJPEsw8x7Tysi2r2fe")
-          .delete();
-    } catch (e) {
-      print("delete 오류 발생 : $e");
-    }
-  }
-
-  /// 조회 메서드
-  void read() async {
-    try {
-      var documentSnapshot = await firestore
-          .collection("firestore")
-          .doc("PPIJPEsw8x7Tysi2r2fe")
-          .get();
-
-      var documentEmail = documentSnapshot.data()?["ㄹㄹ"];
-      // print(documentEmail);
-      setState(() {
-        widget.email = documentEmail;
-      });
-    } catch (e) {
-      print("delete 오류 발생 : $e");
-    }
   }
 }
